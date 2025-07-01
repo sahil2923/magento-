@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mfzerodwt>
+            <general>
+                <enabled>0</enabled>
+                <mfmodule>ZeroDowntimeDeploy</mfmodule>
+                <static_content_deploy>0</static_content_deploy>
+                <jobs_count_for_parallel_processing>1</jobs_count_for_parallel_processing>
+                <enable_caches>1</enable_caches>
+                <magento_cli_command/>
+                <pull_from_composer>1</pull_from_composer>
+                <composer_pull_command>composer</composer_pull_command>
+                <pull_from_git>0</pull_from_git>
+                <pull_from_git_branch>master</pull_from_git_branch>
+                <disable_default_commands>0</disable_default_commands>
+            </general>
+            <copy_files>
+                <copy_to_temp></copy_to_temp>
+                <copy_from_temp></copy_from_temp>
+            </copy_files>
+            <composer>
+                <pull_from_composer>1</pull_from_composer>
+                <composer_pull_command>composer</composer_pull_command>
+            </composer>
+            <git>
+                <pull_from_git>0</pull_from_git>
+                <pull_from_git_branch>master</pull_from_git_branch>
+                <webhooks_enabled>0</webhooks_enabled>
+                <secret/>
+            </git>
+        </mfzerodwt>
+    </default>
+</config>

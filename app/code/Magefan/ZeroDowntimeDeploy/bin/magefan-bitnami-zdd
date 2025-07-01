@@ -1,0 +1,30 @@
+#!/bin/bash
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:remove-old-files-in-magento-root"
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:create-instance"
+
+cd var/mfzerodwt/instance
+
+#git pull origin master
+composer install
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:enable-new-modules"
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento setup:di:compile"
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento setup:static-content:deploy -f"
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento setup:upgrade --keep-generated --magento-init-params=MAGE_DIRS[base][path]=/opt/bitnami/apps/magento/htdocs/var/mfzerodwt/instance"
+
+cd ../../../
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:copy-new-files-in-magento-root"
+
+#git pull origin master
+composer install
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:replace-files-in-magento-root"
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento c:e"
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento c:f"
+
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:remove-old-files-in-magento-root"
+sudo su daemon -s /bin/bash -c "/opt/bitnami/php/bin/php bin/magento magefan:zero-downtime:delete-instance"

@@ -1,0 +1,38 @@
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Deploy\Console\Command\SetModeCommand" type="Magefan\ZeroDowntimeDeploy\Rewrite\Magento\Deploy\Console\Command\SetModeCommand"/>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Deploy" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\Deploy</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Cron" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\Cron</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Create_Instance" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\CreateInstance</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Enable_New_Modules" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\EnableNewModules</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Delete_Instance" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\DeleteInstance</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Copy_New_Files_To_Magento_Root" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\CopyNewFilesToMagentoRoot</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Remove_Old_Files_In_Magento_Root" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\RemoveOldFilesInMagentoRoot</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Replace_Files_In_Magento_Root" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\ReplaceFilesInMagentoRoot</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Deploy_Mode_Set" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\DeployModeSet</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Composer_Require" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\Composer</item>
+                <item name="Magefan_ZeroDowntimeDeploy_Console_Command_Amasty_JetTheme_GenerateThemeAsset" xsi:type="object">Magefan\ZeroDowntimeDeploy\Console\Command\AmastyJetThemeGenerateThemeAsset</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Module\Plugin\DbStatusValidator">
+        <plugin disabled="false" name="Magefan_ZeroDowntimeDeploy_Plugin_Magento_Framework_Module_Plugin_DbStatusValidator" sortOrder="10" type="Magefan\ZeroDowntimeDeploy\Plugin\Magento\Framework\Module\Plugin\DbStatusValidator"/>
+    </type>
+    <type name="Magento\Deploy\Service\DeployStaticContent">
+        <plugin name="Magefan_ZeroDowntimeDeploy_Plugin_Magento_Deploy_Service_DeployStaticContent" type="Magefan\ZeroDowntimeDeploy\Plugin\Magento\Deploy\Service\DeployStaticContent" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Framework\App\Cache">
+        <plugin name="Magefan_ZeroDowntimeDeploy_Plugin_Magento_Framework_App_Cache" type="Magefan\ZeroDowntimeDeploy\Plugin\Magento\Framework\App\Cache" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\PageCache\Model\Cache\Type">
+        <plugin name="Magefan_ZeroDowntimeDeploy_Plugin_Magento_PageCache_Model_Cache_Type" type="Magefan\ZeroDowntimeDeploy\Plugin\Magento\PageCache\Model\Cache\Type" sortOrder="10" disabled="false"/>
+    </type>
+</config>
